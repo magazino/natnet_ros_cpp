@@ -19,7 +19,11 @@ from PyQt5 import QtWidgets, uic
 import sys
 
 from PyQt5 import QtGui, QtWidgets
-from PyQt5.QtCore import QObject, QThread, pyqtSignal
+from PyQt5.QtCore import QThread, pyqtSignal
+
+DEFAULT_SERVER_IP = "192.168.20.1"
+DEFAULT_CLIENT_IP = "192.168.20.2"
+
 
 class WorkerThread(QThread):
     finished_signal = pyqtSignal(int)
@@ -100,8 +104,8 @@ class PyQt5Widget(QtWidgets.QMainWindow):
     if len(self.IP_LIST)>0:
       self.client_ip_spin.setEnabled(True)
       self.client_ip_spin.setMinimum(1)
-      self.textClientIP.setText(str(self.IP_LIST[self.client_ip_spin.value()-1]))
-      self.textServerIP.setText('.'.join(str(self.IP_LIST[self.client_ip_spin.value()-1]).split('.')[:-1],)+'.')
+      self.textClientIP.setText(DEFAULT_CLIENT_IP)
+      self.textServerIP.setText(DEFAULT_SERVER_IP)
       self.conn_params["clientIP"] = str(self.IP_LIST[self.client_ip_spin.value()-1])
     self.client_ip_spin.setMaximum(len(self.IP_LIST))
 
@@ -116,7 +120,7 @@ class PyQt5Widget(QtWidgets.QMainWindow):
         self.network_spin.setValue(i+1)
         self.select_network()
     
-    self.pub_rbm.setEnabled(False)
+    self.pub_rbm.setEnabled(True)
     self.remoteip_radio.clicked.connect(self.select_remote)
     self.network_radio.clicked.connect(self.select_network)
     self.localhost_radio.clicked.connect(self.select_localhost)

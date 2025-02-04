@@ -753,7 +753,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Word frame name</string>
+          <string>World frame name</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="textFrameName">
@@ -772,7 +772,7 @@
           </font>
          </property>
          <property name="text">
-          <string notr="true">world</string>
+          <string notr="true">optitrack_origin</string>
          </property>
         </widget>
        </widget>
